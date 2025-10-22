@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualization Guide: Univariate, Bivariate & Multivariate</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a15;
+            --bg-secondary: #0f0f1f;
+            --bg-tertiary: #1a1a2e;
+            --bg-code: #0a0a15;
+            --bg-output: #0f0f1f;
+            --text-primary: #ff9a76;
+            --text-secondary: #ffb3a7;
+            --accent-primary: #e94560;
+            --accent-secondary: #ff9a76;
+            --accent-tertiary: #ffb3a7;
+            --accent-quaternary: #e94560;
+            --border-color: #ff9a76;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 14px;
+            background: linear-gradient(135deg, #0a0a15 0%, #0f0f1f 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 0 50px rgba(233, 69, 96, 0.3);
+        }
+        h1 {
+            color: var(--accent-secondary);
+            text-align: center;
+            border-bottom: 3px solid var(--accent-primary);
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px var(--accent-secondary);
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2 {
+            color: var(--accent-primary);
+            margin-top: 50px;
+            border-left: 5px solid var(--accent-primary);
+            padding-left: 20px;
+            font-size: 2em;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-quaternary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .intro {
+            background: var(--bg-tertiary);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        .cell {
+            margin: 25px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--bg-code);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .cell-header {
+            background: rgba(233, 69, 96, 0.2);
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: bold;
+            color: var(--text-primary);
+            font-size: 1.1em;
+        }
+        .code-block {
+            background: var(--bg-code);
+            color: var(--text-primary);
+            padding: 20px;
+            margin: 0;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre;
+            tab-size: 4;
+        }
+        .tip-box {
+            background: rgba(233, 69, 96, 0.1);
+            border-left: 4px solid var(--accent-quaternary);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-style: italic;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Visualization Guide by Analysis Type</h1>
+
+        <!-- =============== UNIVARIATE =============== -->
+        <div class="section" id="univariate">
+            <h2>1. Univariate Plots</h2>
+            <div class="intro">
+                <p><strong>What it shows:</strong> The distribution of a single variable.</p>
+                <p><strong>When to use:</strong> During initial data exploration to understand central tendency, spread, skewness, and presence of outliers. Essential before any modeling or comparison.</p>
+            </div>
+
+            <div class="cell">
+                <div class="cell-header">Histogram – Continuous Distribution</div>
+                <div class="code-block">plt.figure(figsize=(10, 6))
+plt.hist(df['Track Score'], bins=50, color='#e94560', alpha=0.7, edgecolor='white')
+plt.title('Distribution of Track Score')
+plt.xlabel('Track Score')
+plt.ylabel('Frequency')
+plt.show()</div>
+            </div>
+
+            <div class="cell">
+                <div class="cell-header">KDE Plot – Smooth Density Estimate</div>
+                <div class="code-block">plt.figure(figsize=(10, 6))
+sns.kdeplot(df['Spotify Popularity'].dropna(), shade=True, color='#ff9a76')
+plt.title('Density of Spotify Popularity')
+plt.xlabel('Popularity (0–100)')
+plt.show()</div>
+            </div>
+
+            <div class="cell">
+                <div class="cell-header">Boxplot – Outlier Detection</div>
+                <div class="code-block">plt.figure(figsize=(8, 5))
+sns.boxplot(y=df['YouTube Views'], color='#ffb3a7')
+plt.title('YouTube Views Distribution & Outliers')
+plt.ylabel('Views')
+plt.yscale('log')
+plt.show()</div>
+            </div>
+
+            <div class="cell">
+                <div class="cell-header">Countplot – Categorical Frequencies</div>
+                <div class="code-block">plt.figure(figsize=(10, 6))
+sns.countplot(x='Explicit Track', data=df, palette=['#e94560', '#ff9a76'])
+plt.title('Count of Explicit vs Non-Explicit Tracks')
+plt.xlabel('Explicit (1 = Yes)')
+plt.show()</div>
+            </div>
+
+            <div class="tip-box">
+                Use univariate plots first in any analysis pipeline. They reveal data quality issues (e.g., unexpected zeros, extreme skew) and guide decisions on transformations or imputation.
+            </div>
+        </div>
+
+        <!-- =============== BIVARIATE =============== -->
+        <div class="section" id="bivariate">
+            <h2>2. Bivariate Plots</h2>
+            <div class="intro">
+                <p><strong>What it shows:</strong> The relationship between two variables.</p>
+                <p><strong>When to use:</strong> To explore associations, correlations, or group differences (e.g., how track score varies by explicit content, or how streams correlate across platforms).</p>
+            </div>
+
+            <div class="cell">
+                <div class="cell-header">Scatter Plot – Numeric vs Numeric</div>
+                <div class="code-block">plt.figure(figsize=(10, 6))
+sns.scatterplot(x='Spotify Streams', y='YouTube Views', data=df, alpha=0.6, color='#e94560')
+plt.xscale('log'); plt.yscale('log')
+plt.title('Spotify Streams vs YouTube Views')
+plt.show()</div>
+            </div>
+
+            <div class="cell">
+                <div class="cell-header">Barplot – Numeric vs Categorical</div>
+                <div class="code-block">plt.figure(figsize=(10, 6))
+sns.barplot(x='Explicit Track', y='Track Score', data=df, ci=None, palette=['#ff9a76', '#ffb3a7'])
+plt.title('Average Track Score by Explicit Flag')
+plt.xlabel('Explicit (1 = Yes)')
+plt.ylabel('Avg Track Score')
+plt.show()</div>
+            </div>
+
+            <div class="cell">
+                <div class="cell-header">Boxplot by Category</div>
+                <div class="code-block">plt.figure(figsize=(12, 6))
+top_artists = df['Artist'].value_counts().head(10).index
+sns.boxplot(x='Artist', y='Spotify Popularity', 
+            data=df[df['Artist'].isin(top_artists)], palette='magma')
+plt.title('Spotify Popularity by Top 10 Artists')
+plt.xticks(rotation=45)
+plt.show()</div>
+            </div>
+
+            <div class="cell">
+                <div class="cell-header">Line Plot – Temporal Trend</div>
+                <div class="code-block">df['Release Year'] = df['Release Date'].dt.year
+pop_by_year = df.groupby('Release Year')['Spotify Popularity'].mean()
+plt.figure(figsize=(12, 6))
+plt.plot(pop_by_year.index, pop_by_year.values, color='#e94560', marker='o')
+plt.title('Average Spotify Popularity Over Time')
+plt.xlabel('Year')
+plt.ylabel('Avg Popularity')
+plt.grid(True, alpha=0.3)
+plt.show()</div>
+            </div>
+
+            <div class="tip-box">
+                Bivariate visualizations answer questions like “Does X affect Y?” or “How do groups differ?”. Always consider log scales for skewed metrics like streams or views.
+            </div>
+        </div>
+
+        <!-- =============== MULTIVARIATE =============== -->
+        <div class="section" id="multivariate">
+            <h2>3. Multivariate Plots</h2>
+            <div class="intro">
+                <p><strong>What it shows:</strong> Relationships among three or more variables.</p>
+                <p><strong>When to use:</strong> To uncover complex patterns, interactions, or cluster structures (e.g., how popularity, streams, and platform presence co-vary across artists or genres).</p>
+            </div>
+
+            <div class="cell">
+                <div class="cell-header">Pairplot – Multiple Numeric Relationships</div>
+                <div class="code-block">subset = df[['Track Score', 'Spotify Popularity', 'YouTube Views', 'TikTok Views']].dropna()
+sns.pairplot(subset, plot_kws={'alpha': 0.5, 'color': '#e94560'})
+plt.suptitle('Pairwise Relationships Among Key Metrics', y=1.02)
+plt.show()</div>
+            </div>
+
+            <div class="cell">
+                <div class="cell-header">Heatmap – Correlation Matrix</div>
+                <div class="code-block">numeric_cols = df.select_dtypes(include=[np.number]).columns
+corr = df[numeric_cols].corr()
+plt.figure(figsize=(14, 12))
+sns.heatmap(corr, cmap='coolwarm', center=0, annot=False, 
+            cbar_kws={'shrink': 0.8}, linewidths=0.5)
+plt.title('Correlation Matrix of Numeric Features')
+plt.show()</div>
+            </div>
+
+            <div class="cell">
+                <div class="cell-header">FacetGrid – Conditional Distributions</div>
+                <div class="code-block">g = sns.FacetGrid(df[df['Artist'].isin(df['Artist'].value_counts().head(6).index)], 
+                   col='Artist', col_wrap=3, sharex=True, sharey=True)
+g.map(sns.histplot, 'Track Score', bins=20, color='#ff9a76')
+g.set_titles('{col_name}')
+g.set_axis_labels('Track Score', 'Frequency')
+plt.tight_layout()
+plt.show()</div>
+            </div>
+
+            <div class="cell">
+                <div class="cell-header">Clustered Heatmap – Grouped Correlations</div>
+                <div class="code-block">from scipy.cluster.hierarchy import linkage
+sns.clustermap(corr.fillna(0), 
+               method='ward', 
+               cmap='vlag', 
+               figsize=(12, 12),
+               dendrogram_ratio=0.1,
+               cbar_pos=(0.02, 0.8, 0.03, 0.18))
+plt.suptitle('Clustered Correlation Heatmap', y=0.98)
+plt.show()</div>
+            </div>
+
+            <div class="tip-box">
+                Multivariate plots reveal hidden structures but can become cluttered. Always subset to the most relevant variables. Use clustering or dimensionality reduction (e.g., PCA) for high-dimensional data.
+            </div>
+        </div>
+
+        <div class="tip-box" style="text-align: center; margin-top: 40px; font-weight: bold;">
+            Start with univariate → move to bivariate → explore multivariate.  
+            Let your questions guide the complexity.
+        </div>
+    </div>
+</body>
+</html>
+

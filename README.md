@@ -75,7 +75,7 @@ import matplotlib.pyplot as plt
 - Platform relationship analysis (TikTok vs Spotify/YouTube)
 - Temporal analysis from 2020-2024 to track evolution
 
-## Key Findings
+## Key Insights
 
 ### Top Artists (Spotify Streams)
 1. **The Weeknd** – 4,281,469,000 streams
@@ -102,26 +102,6 @@ import matplotlib.pyplot as plt
 3. **Artist Development**: Multi-platform presence essential for maximum reach
 4. **Market Evolution**: Streaming dynamics continue to shift rapidly year-over-year
 
-## Files Structure
-
-```
-project/
-├── data/
-│   ├── Most_Streamed_Spotify_Songs_2024.csv (original)
-│   └── cleaned_data.csv (processed)
-├── clean_data.ipynb (data cleaning notebook)
-└── analysis.ipynb (main analysis)
-```
-
-## Usage
-
-To reproduce the analysis:
-
-1. Ensure required libraries are installed
-2. Run `clean_data.ipynb` for data preprocessing
-3. Execute analysis cells in the main notebook
-4. Modify visualization parameters as needed
-
 ## Dependencies
 
 - pandas >= 1.0.0
@@ -136,5 +116,20 @@ This analysis reveals the complex relationships between modern music platforms a
 ---
 *Analysis conducted using Python data science stack. Visualizations optimized for clarity and insight communication.*
 
-**_THIS DOCUMENTATION WAS CREATED WITH AI FOR PLACEHOLDER PURPOSES. EXPECT CHANGES IN A FUTURE_**
+```
+⠀⠀⠀⠀⠀⠀⣀⣤⡤
+⠀⠀⠀⠀⢀⣾⣿⠋
+⠀⠀⠀⣠⣾⣿⡟
+⠀⠀⢸⠛⠉⢹⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠄⠠⣀
+⠀⠀⡘⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠖⠉⠀⠀⠀⣾⣿⣦⡀
+⠀⠀⡇⠀⠀⠀⢡⠄⠀⠀⣀⣀⣀⣠⠊⠀⠀⠀⠀⡠⠞⠛⠛⠛⠛⡀
+⠀⠀⢃⠀⠀⠀⠀⠗⠚⠉⠉⠀⠈⠁⠀⠀⠀⢀⡔⠁⠀
+⠀⠀⠸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣶⣄⠲⡎
+⠀⠀⠀⠃⠀⠀⢠⣤⡀⠀⠀⠀⠀⣿⣿⣿⠀⠘⡄
+⠀⠀⠀⡆⠀⠀⣿⣿⡇⠀⠀⠀⠀⠈⠛⠉⣴⣆⢹⡄
+⠀⠀⠀⣇⢰⡧⣉⡉⠀⠀⢀⡀⠀⣀⣀⣠⣿⡷⢠⡇
+⠀⠀⠀⢻⠘⠃⠈⠻⢦⠞⠋⠙⠺⠋⠉⠉⠉⢡⠟
+⠀⠀⠀⠀⠳⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠋⠀⠀
+```
+
 ```
